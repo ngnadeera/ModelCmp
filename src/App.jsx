@@ -1,33 +1,38 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { Model } from './components/Model';
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [isModalOpen, setModalOpen] = useState(false);
+
+
+  const openModal = () => {
+    setModalOpen(true);
+    document.body.classList.add('active-modal');
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+    document.body.classList.remove('active-modal');
+  };
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <div className="main">
+
+
+      <button className='btn' onClick={()=> 
+      {setModalOpen(true)}}>Click here</button>
+
+
+    </div>
+
+<Model isModalOpen={isModalOpen}  setModalOpen={setModalOpen}
+            Title={"A Modern Approach to State and Side Effects"} Content={"React Hooks have become an integral part of modern React development, offering a more intuitive and functional approach to managing state and side effects. Whether you're starting a new project or enhancing an existing one, incorporating Hooks can lead to cleaner, more maintainable code. Explore the world of Hooks and discover how they can elevate your React development experience."}
+            closeModal={closeModal}/>
+
+      
     </>
   )
 }
